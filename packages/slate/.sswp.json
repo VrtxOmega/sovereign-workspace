@@ -1,0 +1,94 @@
+{
+  "version": "1.0.0",
+  "timestamp": "2026-04-29T21:09:09.717Z",
+  "target": {
+    "name": "omega-slate",
+    "repo": "/mnt/c/Veritas_Lab/omega-slate",
+    "commitHash": "0064f6c47a113943fb31e926ddaf2357b483c394",
+    "branch": "master"
+  },
+  "environment": {
+    "nodeVersion": "v22.14.0",
+    "os": "linux",
+    "arch": "x64",
+    "ci": false
+  },
+  "dependencies": [
+    {
+      "name": "electron",
+      "version": "41.2.0",
+      "resolved": "/mnt/c/Veritas_Lab/omega-slate/node_modules/electron",
+      "integrity": null,
+      "suspicious": true,
+      "riskScore": 0.9
+    }
+  ],
+  "gates": [
+    {
+      "gate": "GIT_INTEGRITY",
+      "status": "FAIL",
+      "evidence": "Modified files: 2",
+      "durationMs": 64
+    },
+    {
+      "gate": "LOCKFILE",
+      "status": "PASS",
+      "evidence": "package-lock.json present",
+      "durationMs": 2
+    },
+    {
+      "gate": "DETERMINISTIC_BUILD",
+      "status": "INCONCLUSIVE",
+      "evidence": "No build command detected",
+      "durationMs": 0
+    },
+    {
+      "gate": "TEST_PASS",
+      "status": "FAIL",
+      "evidence": "Tests failed: npm error Missing script: \"test\"\nnpm error\nnpm error To see a list of scripts, run:\nnpm error   npm run\nnpm error A complete log of this run can be found in: /home/veritas/.npm/_logs/2026-04-29T21_09_",
+      "durationMs": 132
+    },
+    {
+      "gate": "LINT",
+      "status": "PASS",
+      "evidence": "npx passed",
+      "durationMs": 2215
+    }
+  ],
+  "adversarial": {
+    "totalPackages": 1,
+    "suspiciousPackages": 1,
+    "probes": [
+      {
+        "package": "electron",
+        "probe": "TYPO_SQUATTING",
+        "result": "PASS",
+        "detail": "Name heuristic clean"
+      },
+      {
+        "package": "electron",
+        "probe": "VERSION_ANOMALY",
+        "result": "PASS",
+        "detail": "Pinned: 41.2.0"
+      },
+      {
+        "package": "electron",
+        "probe": "METADATA_INTEGRITY",
+        "result": "CRITICAL",
+        "detail": "No integrity hash found"
+      },
+      {
+        "package": "system",
+        "probe": "KIMI_REASONING",
+        "result": "INCONCLUSIVE",
+        "detail": "OLLAMA_CLOUD_API_KEY is not set. Skipping Kimi adversarial analysis."
+      }
+    ],
+    "overallRisk": 0.4
+  },
+  "seal": {
+    "chainHash": "c4370289a0de689c4002158bac433c47e343ff0b4e189f00624b15fcd84b005a",
+    "sequence": 395
+  },
+  "signature": "c427a0f5dbd76a4754e6db9e54914eeb4bb822ebb4ad9010ca9f1c1c0b80c15c"
+}

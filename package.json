@@ -1,0 +1,1 @@
+{"name":"sovereign-workspace","version":"1.0.0","description":"Unified notes and recovery workspace","private":true,"workspaces":["packages/*"]}

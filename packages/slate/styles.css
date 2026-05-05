@@ -1,0 +1,116 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap');
+
+:root {
+    --obsidian: rgba(10, 10, 10, 0.7);
+    --gold: rgba(255, 215, 0, 0.9);
+    --gold-dim: rgba(255, 215, 0, 0.3);
+    --gold-glow: rgba(255, 215, 0, 0.1);
+    --text-primary: rgba(255, 255, 255, 0.95);
+    --text-placeholder: rgba(255, 255, 255, 0.2);
+    --border-radius: 16px;
+}
+
+body, html {
+    margin: 0;
+    padding: 0;
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+    background: transparent;
+    font-family: 'Inter', sans-serif;
+}
+
+.slate-container {
+    width: calc(100vw - 32px);
+    height: calc(100vh - 32px);
+    margin: 16px;
+    background: var(--obsidian);
+    backdrop-filter: blur(40px) saturate(150%);
+    -webkit-backdrop-filter: blur(40px) saturate(150%);
+    border-radius: var(--border-radius);
+    position: relative;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 215, 0, 0.15);
+    display: flex;
+    box-sizing: border-box;
+    /* Frameless dragging region */
+    -webkit-app-region: drag; 
+}
+
+/* Subtle glowing pulse border effect */
+.slate-container::before {
+    content: '';
+    position: absolute;
+    top: -1px; left: -1px; right: -1px; bottom: -1px;
+    border-radius: calc(var(--border-radius) + 1px);
+    background: linear-gradient(135deg, transparent 40%, var(--gold-dim) 50%, transparent 60%);
+    z-index: -1;
+    background-size: 200% 200%;
+    animation: goldPulse 8s infinite linear;
+    pointer-events: none;
+}
+
+@keyframes goldPulse {
+    0% { background-position: 200% 0; }
+    100% { background-position: -200% 0; }
+}
+
+#slate-input {
+    flex: 1;
+    width: 100%;
+    height: 100%;
+    background: transparent;
+    border: none;
+    outline: none;
+    color: var(--text-primary);
+    font-size: 1.25rem;
+    line-height: 1.6;
+    padding: 32px;
+    resize: none;
+    font-family: 'Inter', monospace; /* Slight monospace feel for drafting */
+    letter-spacing: 0.3px;
+    text-shadow: 0 0 10px rgba(0,0,0,0.8);
+    -webkit-app-region: no-drag; 
+}
+
+#slate-input::placeholder {
+    color: var(--text-placeholder);
+    text-shadow: none;
+}
+
+#slate-input:focus {
+    /* Optional: brighten the gold frame slightly on focus */
+}
+
+/* Custom Webkit scrollbar for massive note dumps */
+::-webkit-scrollbar {
+    width: 6px;
+}
+::-webkit-scrollbar-track {
+    background: transparent;
+}
+::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+}
+::-webkit-scrollbar-thumb:hover {
+    background: var(--gold-dim);
+}
+.slate-action-btn {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    background: transparent;
+    border: none;
+    color: var(--text-placeholder);
+    cursor: pointer;
+    padding: 8px;
+    border-radius: 8px;
+    transition: all 0.2s;
+    z-index: 10;
+    -webkit-app-region: no-drag;
+}
+.slate-action-btn:hover {
+    color: #ff4d4d;
+    background: rgba(255, 77, 77, 0.1);
+}
